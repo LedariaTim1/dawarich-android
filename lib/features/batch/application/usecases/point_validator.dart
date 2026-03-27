@@ -8,6 +8,7 @@ import 'package:dawarich/features/tracking/domain/models/last_point.dart';
 import 'package:dawarich/features/tracking/domain/models/tracker_settings.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:option_result/option_result.dart';
+import 'package:flutter/foundation.dart';
 
 
 final class PointValidator {
@@ -124,6 +125,10 @@ final class PointValidator {
 
     double requiredAccuracyMeters = _getAccuracyThreshold(requiredAccuracy);
 
+    if (kDebugMode) {
+      debugPrint('[PointValidator] Actual Accuracy: ${candidate.properties.horizontalAccuracy}m | Required: ${requiredAccuracyMeters}m');
+    }
+
     answer = candidate.properties.horizontalAccuracy < requiredAccuracyMeters;
 
     return answer;
@@ -150,7 +155,7 @@ final class PointValidator {
         case LocationPrecision.high:
           return 100; // Android High accuracy
         case LocationPrecision.best:
-          return 50; // Android Best accuracy
+          return 70; // Android Best accuracy
       }
     }
   }

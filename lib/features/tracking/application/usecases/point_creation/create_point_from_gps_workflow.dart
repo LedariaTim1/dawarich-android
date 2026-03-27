@@ -35,7 +35,7 @@ final class CreatePointFromGpsWorkflow {
     final Duration autoAttemptTimeout = _clampDuration(
       Duration(seconds: currentTrackingFrequency),
       const Duration(seconds: 5),
-      const Duration(seconds: 30),
+      const Duration(seconds: 60),
     );
 
     final Duration autoStaleMax = _clampDuration(
@@ -44,7 +44,7 @@ final class CreatePointFromGpsWorkflow {
       const Duration(seconds: 30),
     );
 
-    const Duration manualTimeout = Duration(seconds: 15);
+    const Duration manualTimeout = Duration(seconds: 45);
     const Duration manualStaleMax = Duration(seconds: 90);
 
     final Duration attemptTimeout = isTrackingAutomatically ? autoAttemptTimeout : manualTimeout;

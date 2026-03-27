@@ -423,6 +423,11 @@ final class PointAutomationService {
         }
       }
 
+      _showTrackerNotification(
+        title: 'GrapheneOS GPS Debug',
+        body: 'Accuracy: ${sample.fix.hAccuracyMeters.toStringAsFixed(2)} m',
+      );
+
       final pointResult = sample.pointResult;
       if (pointResult == null) {
         if (kDebugMode) {
